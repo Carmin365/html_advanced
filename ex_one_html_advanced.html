@@ -1,0 +1,37 @@
+<!DOCTYPE Html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8"    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Exemplo de código em HTML para nível avançado.</title>
+
+</head>
+
+<body>
+                    
+<template id="my-element">
+    <style>
+    :host {
+    display: block;
+    border: 1px solid black;
+    padding: 10px;
+    }
+    </style>
+    <slot></slot>
+</template>
+  
+<script>
+    customElements.define('my-element', class extends HTMLElement {
+    connectedCallback() {
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(document.getElementById('my-element').content.cloneNode(true));
+    }
+    });
+</script>
+  
+<my-element> * Conteúdo do meu componente personalizado criado com o uso de Web Components.</my-element>
+
+</body>
+</html>
+
